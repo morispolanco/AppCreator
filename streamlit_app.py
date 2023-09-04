@@ -23,10 +23,10 @@ def main():
             st.session_state[variable] = ''
         
     st.title("Streamlit Chatbot Maker🤯")
-    st.markdown("Welcome to the future of app creation! This is an LLM-Powered platform that effortlessly crafts other LLM-Powered applications.")
+    st.markdown("¡Bienvenido al futuro de la creación de aplicaciones! Esta es una plataforma potenciada por LLM que crea sin esfuerzo otras aplicaciones potenciadas por LLM.")
 
-    app_user_input = st.text_area(label="Describe the app you need below: ", key="appinput",
-            placeholder="Eg. An app that gives me Youtube video ideas about a given topic...")
+    app_user_input = st.text_area(label="Describa a continuación la aplicación que necesita: ", key="appinput",
+            placeholder="Por ejemplo, una aplicación que me dé ideas de vídeos de Youtube sobre un tema determinado...")
 
     if st.button("Create"):
         
