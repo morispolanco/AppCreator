@@ -22,24 +22,24 @@ def main():
         if variable not in st.session_state:
             st.session_state[variable] = ''
         
-    st.title("Creador de Chatbots con Streamlit 🤯")
-    st.markdown("¡Bienvenido al futuro de la creación de aplicaciones! Esta plataforma está impulsada por LLM y crea aplicaciones impulsadas por LLM de manera eficiente.")
+    st.title("Streamlit Chatbot Maker🤯")
+    st.markdown("Welcome to the future of app creation! This is an LLM-Powered platform that effortlessly crafts other LLM-Powered applications.")
 
-    app_user_input = st.text_area(label="Describe la aplicación que necesitas a continuación: ", key="appinput",
-            placeholder="Por ejemplo, una aplicación que me dé ideas para videos de YouTube sobre un tema dado...")
+    app_user_input = st.text_area(label="Describe the app you need below: ", key="appinput",
+            placeholder="Eg. An app that gives me Youtube video ideas about a given topic...")
 
-    if st.button("Crear"):
+    if st.button("Create"):
         
-        app_system_prompt = """Eres streamlitGPT y tu trabajo es ayudar a un usuario a generar una aplicación Streamlit LLM simple. El usuario te describirá lo que hará la aplicación. Luego, tomarás esa descripción y generarás un nombre divertido, un emoji para la aplicación, una descripción de la aplicación y el sistema de indicaciones para el LLM. Utilizarás este formato exacto como se muestra a continuación para las variables. 
+        app_system_prompt = """You are streamlitGPT your job is to help a user generate a simple LLM streamlit app. The user will describe to you what the application will do. You will then take that description and generate a Fun Name, an emoji for the app, an app description, and the system prompt for the LLM. You will use this exact format as shown below for the variables. 
 
-        Tu salida debe ser un diccionario en Python que incluya solo estas variables y nada más. Muéstralo como código Python. 
+        Your output should be a python dictionary only include these variables and nothing else. Output it as python code. 
 
-        'app_name': "El nombre de la aplicación debe ir aquí como una cadena, siempre añade emojis",
-        'app_emoji': "El emoji que mejor se adapte al nombre de la aplicación debe ir aquí",
-        'app_description': "Una descripción de la aplicación debe ir aquí como una cadena. Sé divertido e ingenioso",
-        'system_prompt': "Eres un chatbot llamado [nombre de la aplicación aquí] que ayuda a los humanos con [describe lo que hará la aplicación]. Tu trabajo es [dale su función].\nHistorial del chat: [agrega una variable de entrada llamada chat_history delimitada por llaves] \nPregunta del usuario: [agrega una variable de entrada llamada question delimitada por llaves]",
-        'user_input_label': "[agrega una etiqueta para la caja de entrada aquí]",
-        'placeholder': "Crea un marcador de posición para la caja de entrada de preguntas, esto debe ser un ejemplo relevante de entrada de usuario",
+        'app_name': "The name of the app should go here as a string, always add emojis",
+        'app_emoji': "The emoji that best suits the app name should go here",
+        'app_description': "A description of the app should go here as a string. Be fun and witty",
+        'system_prompt': "You are a chatbot called [name of app here] that helps the human with [describe what the app will do]. Your job is to do [give it its role].\nChat History: [add input variable called chat_history delimited by curly braces] \nUser Question: [add an input variable called question delimited by curly braces]",
+        'user_input_label': "[add a label for the input box here]",
+        'placeholder': "Create a placeholder for the question input box, this should be a relevant example user input",
         
         {app_question}
         """
@@ -88,7 +88,7 @@ def created():
 
         user_input = st.text_input(label=st.session_state.user_input_label, placeholder=st.session_state.placeholder)
 
-        if st.button("Entrar"):
+        if st.button("Enter"):
                             
             custom_prompt2 = PromptTemplate(template=st.session_state.system_prompt, input_variables=["question", "chat_history"])
 
@@ -111,7 +111,7 @@ def created():
             st.markdown(output)
             
             if st.session_state["generated"]:
-                with st.expander("Ver Historial de Chat"):
+                with st.expander("See Chat History"):
                     for i in range(len(st.session_state["generated"]) - 1, -1, -1):
                         st.markdown(st.session_state["past"][i])
                         st.markdown(st.session_state["generated"][i])
