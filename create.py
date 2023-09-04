@@ -11,6 +11,7 @@ from streamlit_extras.switch_page_button import switch_page
 import ast
 from langchain import OpenAI
 import os
+import openai
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
